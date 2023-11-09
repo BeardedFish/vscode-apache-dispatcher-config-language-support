@@ -1,0 +1,89 @@
+{
+	"name": "Apache Dispatcher Config",
+	"scopeName": "text.apache-dispatcher-config",
+	"patterns": [
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#property"
+		},
+		{
+			"include": "#string"
+		},
+		{
+			"include": "#function"
+		}
+	],
+	"repository": {
+		"comment": {
+			"patterns": [
+				{
+					"name": "comment.line.number-sign.apache-dispatcher-config",
+					"match": "#.*$"
+				}
+			]
+		},
+		"property": {
+			"patterns": [
+				{
+					"name": "invalid.property.apache-dispatcher-config",
+					"match": "(?<!['\"])(\/{2,}[a-zA-Z0-9_]+)(?!['\"])"
+				},
+				{
+					"name": "storage.type.property.apache-dispatcher-config",
+					"match": "(?<!['\"])(\/[a-zA-Z0-9_]+)(?!['\"])"
+				}
+			]
+		},
+		"interpolation": {
+			"patterns": [
+				{
+					"name": "variable.other.interpolation.apache-dispatcher-config",
+					"begin": "\\$\\{",
+					"end": "\\}"
+				}
+			]
+		},
+		"string": {
+			"patterns": [
+				{
+					"name": "string.quoted.apache-dispatcher-config",
+					"begin": "'",
+					"end": "'",
+					"patterns": [
+						{
+							"match": "\\\\(?:[nrt'\"\\\\]|x[0-9A-Fa-f]+|u[0-9a-fA-F]{4})",
+							"name": "constant.character.escape.apache-dispatcher-config"
+						},
+						{
+							"include": "#interpolation"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.apache-dispatcher-config",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"match": "\\\\(?:[nrt'\"\\\\]|x[0-9A-Fa-f]+|u[0-9a-fA-F]{4})",
+							"name": "constant.character.escape.apache-dispatcher-config"
+						},
+						{
+							"include": "#interpolation"
+						}
+					]
+				}
+			]
+		},
+		"function": {
+			"patterns": [
+				{
+					"name": "support.function.apache-dispatcher-config",
+					"match": "\\$include(?=\\W|$)"
+				}
+			]
+		}
+	}
+}

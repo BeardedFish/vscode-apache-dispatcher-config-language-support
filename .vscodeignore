@@ -1,0 +1,9 @@
+.git/**
+.github/**
+.vscode/**
+node_modules/**
+.editorconfig
+.gitattributes
+.gitignore
+package-lock.json
+vscode-apache-dispatcher-config-language-support.code-workspace

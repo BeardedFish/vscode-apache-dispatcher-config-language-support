@@ -1,0 +1,62 @@
+{
+	"name": "vscode-apache-dispatcher-config-language-support",
+	"displayName": "Apache Dispatcher Config Language Support for Visual Studio Code",
+	"description": "An extension for Visual Studio Code that enables language support for Apache Dispatcher Config files.",
+	"icon": "./assets/icon.png",
+	"license": "MIT",
+	"version": "1.0.0",
+	"publisher": "darian-benam",
+	"keywords": [
+		"AEM",
+		"Adobe",
+		"Adobe Experience Manager",
+		"Any",
+		"Apache",
+		"Config",
+		"Configuration",
+		"Dispatcher",
+		"Syntax"
+	],
+	"engines": {
+		"vscode": "^1.81.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Other"
+	],
+	"contributes": {
+		"grammars": [
+			{
+				"language": "apache-dispatcher-config",
+				"scopeName": "text.apache-dispatcher-config",
+				"path": "./syntaxes/apache-dispatcher-config.tmLanguage.json"
+			}
+		],
+		"languages": [
+			{
+				"id": "apache-dispatcher-config",
+				"icon": {
+					"light": "./assets/languages/apache-dispatcher-config-32x32.png",
+					"dark": "./assets/languages/apache-dispatcher-config-32x32.png"
+				},
+				"aliases": [
+					"Apache Dispatcher Config",
+					"Apache Dispatcher Configuration",
+					"AEM Dispatcher Config",
+					"AEM Dispatcher Configuration",
+					"Adobe Experience Manager Dispatcher Config",
+					"Adobe Experience Manager Dispatcher Configuration"
+				],
+				"extensions": [
+					".any"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/BeardedFish/vscode-apache-dispatcher-config-language-support.git"
+	},
+	"scripts": {}
+}
