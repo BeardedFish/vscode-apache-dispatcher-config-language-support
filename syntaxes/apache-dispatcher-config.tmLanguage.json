@@ -28,11 +28,11 @@
 			"patterns": [
 				{
 					"name": "invalid.property.apache-dispatcher-config",
-					"match": "(?<!['\"])(\/{2,}[a-zA-Z0-9_]+)(?!['\"])"
+					"match": "(?<!['\"])(\/{2,}[a-zA-Z0-9_-]+)(?!['\"])"
 				},
 				{
 					"name": "storage.type.property.apache-dispatcher-config",
-					"match": "(?<!['\"])(\/[a-zA-Z0-9_]+)(?!['\"])"
+					"match": "(?<!['\"])(\/[a-zA-Z0-9_-]+)(?!['\"])"
 				}
 			]
 		},
