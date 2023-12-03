@@ -12,6 +12,12 @@
 			"include": "#string"
 		},
 		{
+			"include": "#interpolation"
+		},
+		{
+			"include": "#number"
+		},
+		{
 			"include": "#function"
 		}
 	],
@@ -40,8 +46,7 @@
 			"patterns": [
 				{
 					"name": "variable.other.interpolation.apache-dispatcher-config",
-					"begin": "\\$\\{",
-					"end": "\\}"
+					"match": "\\$\\{[\\s\\S]*\\}"
 				}
 			]
 		},
@@ -50,7 +55,7 @@
 				{
 					"name": "string.quoted.apache-dispatcher-config",
 					"begin": "'",
-					"end": "'",
+					"end": "(\"|\n)",
 					"patterns": [
 						{
 							"match": "\\\\(?:[nrt'\"\\\\]|x[0-9A-Fa-f]+|u[0-9a-fA-F]{4})",
@@ -64,7 +69,7 @@
 				{
 					"name": "string.quoted.double.apache-dispatcher-config",
 					"begin": "\"",
-					"end": "\"",
+					"end": "(\"|\n)",
 					"patterns": [
 						{
 							"match": "\\\\(?:[nrt'\"\\\\]|x[0-9A-Fa-f]+|u[0-9a-fA-F]{4})",
@@ -74,6 +79,14 @@
 							"include": "#interpolation"
 						}
 					]
+				}
+			]
+		},
+		"number": {
+			"patterns": [
+				{
+					"name": "constant.numeric.apache-dispatcher-config",
+					"match": "\\b(?:\\d+\\.?\\d*|\\.\\d+)\\b"
 				}
 			]
 		},
