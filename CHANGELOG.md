@@ -1,5 +1,10 @@
 # Change Log
 
+## v1.0.3 - 2023-12-14
+
+- Fixed bug where syntax highlighting would break via variable interpolation
+- Fixed bug where syntax highlighting would break if a property with a single quote string was on the same line as another property with a single quote string
+
 ## v1.0.2 - 2023-12-03
 
 - Added syntax highlighting support for numbers.
