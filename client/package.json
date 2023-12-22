@@ -1,0 +1,24 @@
+{
+	"name": "vscode-apache-dispatcher-config-language-support-client",
+	"version": "1.0.0",
+	"description": "",
+	"main": "src/client.ts",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/BeardedFish/vscode-apache-dispatcher-config-language-support.git"
+	},
+	"author": "Darian Benam <darian@darianbenam.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/BeardedFish/vscode-apache-dispatcher-config-language-support/issues"
+	},
+	"homepage": "https://github.com/BeardedFish/vscode-apache-dispatcher-config-language-support#readme",
+	"dependencies": {
+		"vscode-languageclient": "^9.0.1"
+	},
+	"devDependencies": {
+		"@types/node": "^20.10.3",
+		"@types/vscode": "^1.84.2"
+	}
+}

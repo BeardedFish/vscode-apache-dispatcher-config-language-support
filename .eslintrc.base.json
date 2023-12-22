@@ -1,0 +1,54 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended"
+	],
+	"plugins": [
+		"@typescript-eslint"
+	],
+	"rules": {
+		"@typescript-eslint/naming-convention": [
+			"warn",
+			{
+				"selector": "enumMember",
+				"format": [ "PascalCase" ]
+			}
+		],
+		"@typescript-eslint/no-inferrable-types": "off",
+		"@typescript-eslint/semi": "off",
+		"@typescript-eslint/type-annotation-spacing": "warn",
+		"array-bracket-spacing": [
+			"warn",
+			"always"
+		],
+		"comma-dangle": [
+			"warn",
+			{
+				"arrays": "never",
+				"objects": "never",
+				"imports": "never",
+				"exports": "never",
+				"functions": "never"
+			}
+		],
+		"curly": "warn",
+		"indent": [
+			"warn",
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"quotes": [
+			"warn",
+			"double"
+		],
+		"keyword-spacing": "warn"
+	}
+}
