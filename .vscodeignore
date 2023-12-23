@@ -17,6 +17,7 @@ server/tree-sitter-apache_dispatcher_config.wasm
 .eslintrc.base.json
 .gitattributes
 .gitignore
+DEVELOPMENT.md
 .vscodeignore
 tsconfig.base.json
 vscode-apache-dispatcher-config-language-support.code-workspace

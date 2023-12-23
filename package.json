@@ -61,8 +61,8 @@
 	"main": "client/dist/extension.js",
 	"scripts": {
 		"install-dependencies": "npm ci && cd client && npm ci && cd ../server && npm ci && cd ..",
+		"build": "npm run webpack",
 		"clean": "rimraf client/dist && rimraf server/dist",
-		"compile": "npm run webpack",
 		"lint": "npm run lint:client && npm run lint:server",
 		"lint:client": "eslint --config ./client/.eslintrc.json ./client/src/*.ts",
 		"lint:server": "eslint --config ./server/.eslintrc.json ./server/src/*.ts",
