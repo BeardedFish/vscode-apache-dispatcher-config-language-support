@@ -14,6 +14,7 @@ export enum ApacheDispatcherConfigToken {
 	Comment = "comment",
 	Function = "function",
 	FunctionName = "function_name",
+	Number = "number",
 	Property = "property",
 	PropertyName = "property_name",
 	ScopedProperty = "scoped_property",

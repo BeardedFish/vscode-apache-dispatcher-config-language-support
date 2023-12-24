@@ -5,7 +5,7 @@
 
 import { AUTOCOMPLETION_TRIGGER_CHARACTERS, handleAutoCompletion } from "@language-server/core/autocompletion";
 import { getDefinition } from "@language-server/core/definition-provider";
-import { DocumentParserTreeManager } from "@language-server/core/document-parser-tree-manager";
+import { DocumentParserTreeManager, waitForDocumentParserTreeManagerInitialization } from "@language-server/core/document-parser-tree-manager";
 import { DocumentationManager } from "@language-server/core/documentation-manager";
 import { handleHover } from "@language-server/core/hover-provider";
 import * as path from "path";
@@ -17,6 +17,8 @@ import {
 	DefinitionLink,
 	DefinitionParams,
 	DidChangeConfigurationNotification,
+	DocumentSymbol,
+	DocumentSymbolParams,
 	Hover,
 	InitializeParams,
 	InitializeResult,
@@ -52,6 +54,7 @@ CONNECTION.onInitialize(async function(initializeParams: InitializeParams): Prom
 				triggerCharacters: AUTOCOMPLETION_TRIGGER_CHARACTERS
 			},
 			definitionProvider: true,
+			documentSymbolProvider: true,
 			hoverProvider: true,
 			textDocumentSync: TextDocumentSyncKind.Incremental
 		},
@@ -102,6 +105,20 @@ CONNECTION.onDefinition(async function(definitionParams: DefinitionParams): Prom
 		documentParserTreeManager,
 		definitionParams
 	);
+});
+
+CONNECTION.onDocumentSymbol(async function(documentSymbolParams: DocumentSymbolParams): Promise<DocumentSymbol[]> {
+	if (documentParserTreeManager === undefined) {
+		await waitForDocumentParserTreeManagerInitialization(documentParserTreeManager);
+	}
+
+	const document: TextDocument | undefined = DOCUMENT_MANAGER.get(documentSymbolParams.textDocument.uri);
+
+	if (document !== undefined) {
+		return documentParserTreeManager.getDocumentSymbols(document.uri);
+	}
+
+	return [];
 });
 
 CONNECTION.onHover(
