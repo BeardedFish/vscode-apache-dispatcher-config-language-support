@@ -4,6 +4,8 @@
  */
 
 import { AUTOCOMPLETION_TRIGGER_CHARACTERS, handleAutoCompletion } from "@language-server/core/autocompletion";
+import { getDefinition } from "@language-server/core/definition-provider";
+import { DocumentParserTreeManager } from "@language-server/core/document-parser-tree-manager";
 import { DocumentationManager } from "@language-server/core/documentation-manager";
 import { handleHover } from "@language-server/core/hover-provider";
 import * as path from "path";
@@ -12,6 +14,8 @@ import {
 	ClientCapabilities,
 	CompletionItem,
 	Connection,
+	DefinitionLink,
+	DefinitionParams,
 	DidChangeConfigurationNotification,
 	Hover,
 	InitializeParams,
@@ -23,7 +27,6 @@ import {
 	TextDocuments,
 	createConnection
 } from "vscode-languageserver/node";
-import { DocumentParserTreeManager } from "./core/document-parser-tree-manager";
 
 const CONNECTION: Connection = createConnection(ProposedFeatures.all);
 const DOCUMENT_MANAGER: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
@@ -48,6 +51,7 @@ CONNECTION.onInitialize(async function(initializeParams: InitializeParams): Prom
 			completionProvider: {
 				triggerCharacters: AUTOCOMPLETION_TRIGGER_CHARACTERS
 			},
+			definitionProvider: true,
 			hoverProvider: true,
 			textDocumentSync: TextDocumentSyncKind.Incremental
 		},
@@ -88,6 +92,17 @@ CONNECTION.onCompletion(
 		);
 	}
 );
+
+CONNECTION.onDefinition(async function(definitionParams: DefinitionParams): Promise<DefinitionLink[] | undefined> {
+	if (documentParserTreeManager === undefined) {
+		return undefined;
+	}
+
+	return await getDefinition(
+		documentParserTreeManager,
+		definitionParams
+	);
+});
 
 CONNECTION.onHover(
 	async (textDocumentPositionParams: TextDocumentPositionParams): Promise<Hover | null> => {

@@ -6,6 +6,18 @@
 import FileSystem = require("fs");
 import * as path from "path";
 
+export type FileExistsContext = {
+	exists: true;
+	uri: string;
+}
+
+export type FileDoesNotExistContext = {
+	exists: false;
+	uri: undefined;
+}
+
+export type FileExistenceContext = FileExistsContext | FileDoesNotExistContext;
+
 export enum FileExtension {
 	Markdown = ".md"
 }
@@ -39,5 +51,40 @@ export function readFileContent(filePath: string): Promise<string> {
 				resolve(data);
 			}
 		});
+	});
+}
+
+export async function getFileExistenceContext(
+	currentUriContext: string,
+	filePath: string
+): Promise<FileExistenceContext> {
+	return new Promise((resolve, reject) => {
+		let resolvedPath: string = filePath;
+
+		if (!path.isAbsolute(resolvedPath)) {
+			const directoryPath: string = path.dirname(currentUriContext);
+
+			resolvedPath = path.join(directoryPath, filePath);
+		}
+
+		resolvedPath = decodeURIComponent(resolvedPath).replace(/^file:\\/, "");
+
+		try {
+			const fileExists: boolean = FileSystem.existsSync(resolvedPath);
+
+			if (fileExists) {
+				resolve({
+					exists: true,
+					uri: resolvedPath
+				});
+			} else {
+				resolve({
+					exists: false,
+					uri: undefined
+				});
+			}
+		} catch (error: unknown) {
+			reject(error);
+		}
 	});
 }
