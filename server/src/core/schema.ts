@@ -338,6 +338,7 @@ const APACHE_DISPATCHER_CACHE_SCHEMA: ApacheDispatcherNamespaceSchema = {
 				children: {
 					"/glob": {
 						kind: ApacheDispatcherPropertyKind.Value,
+						documentationFileName: "FARM_CACHE_IGNOREURLPARAMS_GLOB.md",
 						autocompletionItems: [
 							{
 								label: "*"
@@ -345,7 +346,8 @@ const APACHE_DISPATCHER_CACHE_SCHEMA: ApacheDispatcherNamespaceSchema = {
 						]
 					},
 					"/type": {
-						kind: ApacheDispatcherPropertyKind.Value
+						kind: ApacheDispatcherPropertyKind.Value,
+						documentationFileName: "FARM_CACHE_IGNOREURLPARAMS_TYPE.md"
 					}
 				}
 			}
