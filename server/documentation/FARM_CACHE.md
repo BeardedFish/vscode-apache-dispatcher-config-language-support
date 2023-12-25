@@ -35,6 +35,4 @@ For permission-sensitive caching, read [Caching Secured Content](https://experie
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#configuring-the-dispatcher-cache-cache
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#configuring-the-dispatcher-cache-cache)

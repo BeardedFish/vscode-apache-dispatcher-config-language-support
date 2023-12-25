@@ -22,6 +22,4 @@ If you do not use load balancing, you can omit this section.
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#configuring-load-balancing-statistics
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#configuring-load-balancing-statistics)

@@ -20,6 +20,4 @@ printf "%-15s: %s %s" $1 $2 $3 >> /opt/dispatcher/logs/invalidate.log
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#using-custom-invalidation-scripts
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#using-custom-invalidation-scripts)

@@ -18,6 +18,4 @@ When a file in `/content/myWebsite/xx` is invalidated, then every `.stat` file f
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#invalidating-files-by-folder-level
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#invalidating-files-by-folder-level)

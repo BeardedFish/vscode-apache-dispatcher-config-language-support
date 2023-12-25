@@ -8,6 +8,4 @@ If no `/unavailablePenalty` property exists, a value of `1` is used.
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#reflecting-server-unavailability-in-dispatcher-statistics
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#reflecting-server-unavailability-in-dispatcher-statistics)

@@ -8,6 +8,4 @@ Dispatcher supports a maximum of eight statistics categories. If you define more
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#configuring-load-balancing-statistics
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#configuring-load-balancing-statistics)

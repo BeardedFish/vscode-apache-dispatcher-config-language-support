@@ -4,6 +4,4 @@ If necessary, set the `/propagateSyndPost` property to `1` to forward syndicatio
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#forwarding-syndication-requests-propagatesyndpost
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#forwarding-syndication-requests-propagatesyndpost)

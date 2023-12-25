@@ -2,6 +2,4 @@ Filters that specify the folders to which permission-sensitive caching is applie
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/permissions-cache.html?lang=en#configure-dispatcher-for-permission-sensitive-caching
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/permissions-cache.html?lang=en#configure-dispatcher-for-permission-sensitive-caching)

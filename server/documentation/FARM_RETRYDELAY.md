@@ -4,6 +4,4 @@ Dispatcher uses a value of `1` if `/retryDelay` is not explicitly defined. The d
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#specifying-the-page-retry-delay
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#specifying-the-page-retry-delay)

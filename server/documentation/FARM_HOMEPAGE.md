@@ -4,6 +4,4 @@ If you are using Apache, you should use the `mod_rewrite` module. See the Apache
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#specify-a-default-page-iis-only-homepage
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#specify-a-default-page-iis-only-homepage)

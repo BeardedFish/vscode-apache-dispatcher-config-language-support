@@ -24,6 +24,4 @@ For example, if the files `farm_1.any` through to `farm_5.any` contain the confi
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#dispatcher-configuration-files
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#dispatcher-configuration-files)

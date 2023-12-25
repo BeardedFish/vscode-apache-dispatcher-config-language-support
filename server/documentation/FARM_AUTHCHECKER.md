@@ -42,6 +42,4 @@ The following example `auth_checker` section configures Dispatcher to use the se
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/permissions-cache.html?lang=en#configure-dispatcher-for-permission-sensitive-caching
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/permissions-cache.html?lang=en#configure-dispatcher-for-permission-sensitive-caching)

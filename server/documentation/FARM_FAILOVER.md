@@ -14,6 +14,4 @@ To enable failover, add the following line to the farm (or website):
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#using-the-failover-mechanism
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#using-the-failover-mechanism)

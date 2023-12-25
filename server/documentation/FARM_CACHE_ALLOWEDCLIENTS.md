@@ -19,6 +19,4 @@ For information about glob properties, see [Designing Patterns for glob Properti
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#limiting-the-clients-that-can-flush-the-cache
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#limiting-the-clients-that-can-flush-the-cache)

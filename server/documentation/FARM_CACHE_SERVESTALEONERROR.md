@@ -4,6 +4,4 @@ If `/serveStaleOnError` is set to `1`, Dispatcher does not delete invalidated co
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#serving-stale-documents-when-errors-occur
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#serving-stale-documents-when-errors-occur)

@@ -2,6 +2,4 @@ Represents whether to `allow` or `deny` the IP address that matches the glob pat
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#limiting-the-clients-that-can-flush-the-cache
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#limiting-the-clients-that-can-flush-the-cache)

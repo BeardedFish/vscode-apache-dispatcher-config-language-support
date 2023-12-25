@@ -16,6 +16,4 @@ To enable access to vanity URLs, add a `/vanity_urls` section to the `/farms` se
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#enabling-access-to-vanity-urls-vanity-urls
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#enabling-access-to-vanity-urls-vanity-urls)

@@ -6,6 +6,4 @@ If `/statfileslevel` is configured, Dispatcher ignores the `/statfile` property 
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#naming-the-statfile
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#naming-the-statfile)

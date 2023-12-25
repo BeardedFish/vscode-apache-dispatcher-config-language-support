@@ -6,6 +6,4 @@ For additional details, also read the [/invalidate](https://experienceleague.ado
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#throttling-stat-file-touching
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#throttling-stat-file-touching)

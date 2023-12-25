@@ -17,6 +17,4 @@ The default value is `0755` which allows the owner to read, write, or search. It
 
 ---
 
-**Source:**
-
-https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#dispatcher-cache-file-permissions
+[Source](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en#dispatcher-cache-file-permissions)
