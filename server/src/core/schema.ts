@@ -347,7 +347,15 @@ const APACHE_DISPATCHER_CACHE_SCHEMA: ApacheDispatcherNamespaceSchema = {
 					},
 					"/type": {
 						kind: ApacheDispatcherPropertyKind.Value,
-						documentationFileName: "FARM_CACHE_IGNOREURLPARAMS_TYPE.md"
+						documentationFileName: "FARM_CACHE_IGNOREURLPARAMS_TYPE.md",
+						autocompletionItems: [
+							{
+								label: "allow"
+							},
+							{
+								label: "deny"
+							}
+						]
 					}
 				}
 			}
