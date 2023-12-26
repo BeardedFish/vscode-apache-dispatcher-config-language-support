@@ -11,6 +11,11 @@ An extension for [Visual Studio Code](https://code.visualstudio.com) that enable
 
 - Syntax Highlighting
 - Property Folding
+- Property and Value Documentation Hints
+- Property and Value Autocompletion Hints
+- Documentation Hints on Hover
+- Document Outline Support
+- Jump Link Support for the `$include` Function
 
 ## Supported File Formats
 
@@ -28,4 +33,6 @@ An extension for [Visual Studio Code](https://code.visualstudio.com) that enable
 
 ## Disclaimer
 
-This extension is not associated with [Adobe](https://www.adobe.com) or the [Apache Software Foundation](https://www.apache.org).
+The `Apache Dispatcher Config Language Support for Visual Studio Code` extension is not affiliated or endorsed by [Adobe](https://www.adobe.com) or the [Apache Software Foundation](https://www.apache.org).
+
+This extension integrates documentation snippets from [Adobe's Experience League Documentation website](https://experienceleague.adobe.com/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration.html?lang=en). All documentation featured in this extension is property of [Adobe](https://www.adobe.com).

@@ -2,13 +2,22 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Run Extension",
+			"name": "Launch Extension Client",
 			"type": "extensionHost",
 			"request": "launch",
+			"runtimeExecutable": "${execPath}",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
 				"--disable-extensions"
-			]
+			],
+			"outFiles": [
+				"${workspaceFolder}/client/dist/**/*.js"
+			],
+			"preLaunchTask": "npm: webpack:dev",
+			"sourceMaps": true,
+			"sourceMapPathOverrides": {
+				"webpack://vscode-apache-dispatcher-config-language-support-client/*": "${workspaceFolder}/client/*"
+			}
 		}
 	]
 }
