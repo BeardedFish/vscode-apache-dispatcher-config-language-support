@@ -15,6 +15,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+      - name: Cache npm Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      - name: Install Dependencies
+        run: npm run install-dependencies
+      - name: Build Artifacts
+        run: npm run build
       - name: Install Visual Studio Code Extension Manager
         run: npm install -g @vscode/vsce
       - name: Publish Extension to Visual Studio Code Marketplace
