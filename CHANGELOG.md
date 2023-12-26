@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.2.0 - 2023-12-25
+
+- Added a `language server` to the extension which provides the following features:
+	- Property and Value Documentation Hints
+	- Property and Value Autocompletion Hints
+	- Documention Hints on Hover
+	- Document Outline Support
+	- Jump Link Support for the `$include` Function
+
 ## v1.0.3 - 2023-12-14
 
 - Fixed bug where syntax highlighting would break via variable interpolation
