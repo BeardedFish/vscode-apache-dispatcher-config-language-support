@@ -90,7 +90,7 @@
 			"patterns": [
 				{
 					"name": "support.function.apache-dispatcher-config",
-					"match": "\\$include(?=\\W|$)"
+					"match": "\\$(\\w*)"
 				}
 			]
 		}
