@@ -11,6 +11,11 @@ An extension for [Visual Studio Code](https://code.visualstudio.com) that enable
 
 - Syntax Highlighting
 - Property Folding
+- Property and Value Documentation Hints
+- Property and Value Autocompletion Hints
+- Documention Hints on Hover
+- Document Outline Support
+- Jump Link Support Support for the `$include` Function
 
 ## Supported File Formats
 
