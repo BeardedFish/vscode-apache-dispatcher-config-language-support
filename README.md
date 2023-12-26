@@ -15,7 +15,7 @@ An extension for [Visual Studio Code](https://code.visualstudio.com) that enable
 - Property and Value Autocompletion Hints
 - Documention Hints on Hover
 - Document Outline Support
-- Jump Link Support Support for the `$include` Function
+- Jump Link Support for the `$include` Function
 
 ## Supported File Formats
 
