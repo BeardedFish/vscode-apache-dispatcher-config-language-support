@@ -5,7 +5,7 @@
 - Added a `language server` to the extension which provides the following features:
 	- Property and Value Documentation Hints
 	- Property and Value Autocompletion Hints
-	- Documention Hints on Hover
+	- Documentation Hints on Hover
 	- Document Outline Support
 	- Jump Link Support for the `$include` Function
 

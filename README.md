@@ -13,7 +13,7 @@ An extension for [Visual Studio Code](https://code.visualstudio.com) that enable
 - Property Folding
 - Property and Value Documentation Hints
 - Property and Value Autocompletion Hints
-- Documention Hints on Hover
+- Documentation Hints on Hover
 - Document Outline Support
 - Jump Link Support for the `$include` Function
 
