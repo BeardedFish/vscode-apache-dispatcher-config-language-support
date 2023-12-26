@@ -179,7 +179,12 @@ const APACHE_DISPATCHER_FILTER_SCHEMA: ApacheDispatcherNamespaceSchema = {
 			"/glob": {
 				kind: ApacheDispatcherPropertyKind.Value,
 				deprecated: true,
-				documentationFileName: "FARM_FILTER_GLOB.md"
+				documentationFileName: "FARM_FILTER_GLOB.md",
+				autocompletionItems: [
+					{
+						label: "*"
+					}
+				]
 			}
 		}
 	}
@@ -192,7 +197,12 @@ const APACHE_DISPATCHER_CACHE_RULES_SCHEMA: ApacheDispatcherSchema = {
 		children: {
 			"/glob": {
 				kind: ApacheDispatcherPropertyKind.Value,
-				documentationFileName: "FARM_CACHE_RULES_GLOB.md"
+				documentationFileName: "FARM_CACHE_RULES_GLOB.md",
+				autocompletionItems: [
+					{
+						label: "*"
+					}
+				]
 			},
 			"/type": {
 				kind: ApacheDispatcherPropertyKind.Value,
@@ -551,6 +561,7 @@ const APACHE_DISPATCHER_FARM_SCHEMA: ApacheDispatcherNamespaceSchema = {
 								children: {
 									"/glob": {
 										kind: ApacheDispatcherPropertyKind.Value,
+										documentationFileName: "FARM_STATISTICS_CATEGORIES_GLOB.md",
 										autocompletionItems: [
 											{
 												label: "*"
@@ -655,6 +666,7 @@ const APACHE_DISPATCHER_FARM_SCHEMA: ApacheDispatcherNamespaceSchema = {
 								children: {
 									"/glob": {
 										kind: ApacheDispatcherPropertyKind.Value,
+										documentationFileName: "FARM_AUTHCHECKER_FILTER_GLOB.md",
 										autocompletionItems: [
 											{
 												label: "*"
@@ -663,6 +675,7 @@ const APACHE_DISPATCHER_FARM_SCHEMA: ApacheDispatcherNamespaceSchema = {
 									},
 									"/type": {
 										kind: ApacheDispatcherPropertyKind.Value,
+										documentationFileName: "FARM_AUTHCHECKER_FILTER_TYPE.md",
 										autocompletionItems: [
 											{
 												label: "allow"
@@ -686,6 +699,7 @@ const APACHE_DISPATCHER_FARM_SCHEMA: ApacheDispatcherNamespaceSchema = {
 								children: {
 									"/glob": {
 										kind: ApacheDispatcherPropertyKind.Value,
+										documentationFileName: "FARM_AUTHCHECKER_HEADERS_GLOB.md",
 										autocompletionItems: [
 											{
 												label: "*"
@@ -694,6 +708,7 @@ const APACHE_DISPATCHER_FARM_SCHEMA: ApacheDispatcherNamespaceSchema = {
 									},
 									"/type": {
 										kind: ApacheDispatcherPropertyKind.Value,
+										documentationFileName: "FARM_AUTHCHECKER_HEADERS_TYPE.md",
 										autocompletionItems: [
 											{
 												label: "allow"
