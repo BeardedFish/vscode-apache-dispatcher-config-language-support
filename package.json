@@ -67,7 +67,7 @@
 		"lint:client": "eslint --config ./client/.eslintrc.json ./client/src/*.ts",
 		"lint:server": "eslint --config ./server/.eslintrc.json ./server/src/*.ts",
 		"lint:fix": "npm run lint:client --fix && npm run lint:server --fix",
-		"vscode:prepublish": "npm run webpack",
+		"vscode:prepublish": "npm run build",
 		"webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
 		"webpack:dev": "npm run clean && webpack --mode development --config ./client/webpack.config.js && webpack --mode development --config ./server/webpack.config.js"
 	},

@@ -23,8 +23,6 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
       - name: Install Dependencies
         run: npm run install-dependencies
-      - name: Build Artifacts
-        run: npm run build
       - name: Install Visual Studio Code Extension Manager
         run: npm install -g @vscode/vsce
       - name: Publish Extension to Visual Studio Code Marketplace
