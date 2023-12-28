@@ -73,16 +73,20 @@ export async function getFileExistenceContext(
 			const fileExists: boolean = FileSystem.existsSync(resolvedPath);
 
 			if (fileExists) {
-				resolve({
-					exists: true,
-					uri: resolvedPath
-				});
-			} else {
-				resolve({
-					exists: false,
-					uri: undefined
-				});
+				const fileInfo: FileSystem.Stats = FileSystem.statSync(resolvedPath);
+
+				if (fileInfo.isFile()) {
+					resolve({
+						exists: true,
+						uri: resolvedPath
+					});
+				}
 			}
+
+			resolve({
+				exists: false,
+				uri: undefined
+			});
 		} catch (error: unknown) {
 			reject(error);
 		}
