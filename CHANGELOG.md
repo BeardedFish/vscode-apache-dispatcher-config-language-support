@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1 - 2023-12-29
+
+- Fixed issue where directories could have jump links in the `$include` function (e.g., `$include "directory/"` would link to a directory but this should not be possible)
+
 ## v1.2.0 - 2023-12-25
 
 - Added a `language server` to the extension which provides the following features:
