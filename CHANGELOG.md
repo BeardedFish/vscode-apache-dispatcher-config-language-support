@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.0 - 2024-01-07
+
+- Added support for `.farm` files
+
 ## v1.2.1 - 2023-12-29
 
 - Fixed issue where directories could have jump links in the `$include` function (e.g., `$include "directory/"` would link to a directory but this should not be possible)
