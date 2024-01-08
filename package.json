@@ -48,7 +48,8 @@
 					"Adobe Experience Manager Dispatcher Configuration"
 				],
 				"extensions": [
-					".any"
+					".any",
+					".farm"
 				],
 				"configuration": "./language-configuration.json"
 			}

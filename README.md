@@ -20,6 +20,7 @@ An extension for [Visual Studio Code](https://code.visualstudio.com) that enable
 ## Supported File Formats
 
 - `.any` (e.g., `dispatcher.any`)
+- `.farm` (e.g., `default.farm`)
 
 ## Preview
 
