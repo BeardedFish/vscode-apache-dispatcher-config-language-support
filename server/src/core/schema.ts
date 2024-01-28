@@ -779,7 +779,6 @@ const APACHE_DISPATCHER_NAMESPACE_SCHEMA: ApacheDispatcherNamespaceSchema = {
 	[ApacheDispatcherNamespace.VirtualHosts]: {}
 };
 
-
 export function getCurrentSchema(
 	namespace: ApacheDispatcherNamespace,
 	pathToCurrentProperty: string[]
@@ -807,6 +806,10 @@ export function getCurrentSchema(
 
 				break;
 			}
+		}
+
+		if (!foundMatch && pathToCurrentProperty.length === 0) {
+			return undefined;
 		}
 
 		if (!foundMatch) {
