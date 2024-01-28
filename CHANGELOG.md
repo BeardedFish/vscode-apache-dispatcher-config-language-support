@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.1 - 2024-01-28
+
+- Fixed issue where scoped properties not defined in the configuration's schema would show autocompletion items
+
 ## v1.3.0 - 2024-01-07
 
 - Added support for `.farm` files
