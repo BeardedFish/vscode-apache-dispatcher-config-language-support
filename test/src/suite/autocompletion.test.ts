@@ -225,7 +225,7 @@ suite("Apache Dispatcher Config Language Support for Visual Studio Code Autocomp
 					{ label: "/protocol", kind: vscode.CompletionItemKind.Property },
 					{ label: "/query", kind: vscode.CompletionItemKind.Property },
 					{ label: "/selectors", kind: vscode.CompletionItemKind.Property },
-					{ label: "/suffix", kind: vscode.CompletionItemKind.Property }
+					{ label: "/suffix-test", kind: vscode.CompletionItemKind.Property }
 				]
 			}
 		);
