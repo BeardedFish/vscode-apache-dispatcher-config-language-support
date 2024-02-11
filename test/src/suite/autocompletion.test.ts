@@ -171,6 +171,22 @@ suite("Apache Dispatcher Config Language Support for Visual Studio Code Autocomp
 		assertZeroAutocompletionItemSuggestions(textEditor.document, cursorPosition);
 	});
 
+	test("Farm Scope Autocompletion (via `available_farms` directory) - Invalid Property '/invalid' Should Have 0 Autocompletion Items", async () => {
+		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("autocompletion/available_farms/invalid-farm-property.any");
+		const cursorPosition: vscode.Position = await simulateTypingProperty(textEditor, new vscode.Position(2, 8));
+
+		const autocompletionList: vscode.CompletionList = await getAutocompletionItemsAtPosition(
+			textEditor.document,
+			cursorPosition
+		);
+
+		assert.equal(
+			autocompletionList.items.length,
+			0,
+			"Autocompletion list was not empty"
+		)
+	});
+
 	test("Filter Scope Autocompletion (via `filters` directory) - Shows All Items in Filter '/0001'", async () => {
 		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("autocompletion/filters/filter.any");
 		const cursorPosition: vscode.Position = await simulateTypingProperty(textEditor, new vscode.Position(1, 4));
