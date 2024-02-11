@@ -1,6 +1,7 @@
 .git/
 .github/
 .vscode/
+.vscode-test/
 **/src/
 **/.eslintignore
 **/.eslintrc.json
@@ -13,6 +14,7 @@ client/node_modules/
 server/documentation/
 !server/node_modules/
 server/tree-sitter-apache_dispatcher_config.wasm
+test/
 .editorconfig
 .eslintrc.base.json
 .gitattributes

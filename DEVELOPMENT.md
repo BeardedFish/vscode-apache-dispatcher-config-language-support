@@ -21,3 +21,13 @@ npm run build
 ```
 
 You can then package the extension via the [vsce](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#vsce) command-line tool.
+
+## How to Test
+
+Assuming the commands in the [How To Build](#how-to-build) section were executed, execute the following command in the root directory:
+
+```
+npm run test
+```
+
+The tests for this project are defined in the [test directory](./test/).
