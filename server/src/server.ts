@@ -60,7 +60,7 @@ CONNECTION.onInitialize(async function(initializeParams: InitializeParams): Prom
 		},
 		serverInfo: {
 			name: "Apache Dispatcher Config Language Server",
-			version: "1.3.1"
+			version: "1.3.2"
 		}
 	};
 

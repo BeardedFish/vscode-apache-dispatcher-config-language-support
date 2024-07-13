@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.3.2 - 2024-07-13
+
+- Added `Buy Me a Coffee` link to the README.md file
+- Added autocompletion integration testing via Mocha
+
 ## v1.3.1 - 2024-01-28
 
 - Fixed issue where scoped properties not defined in the configuration's schema would show autocompletion items
