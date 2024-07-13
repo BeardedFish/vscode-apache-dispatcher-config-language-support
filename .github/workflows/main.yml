@@ -19,7 +19,7 @@ jobs:
       - name: Check npm Visual Studio Code Versions
         shell: pwsh
         run: |
-          ./.github/ci/scripts/Confirm-NpmVisualStudioCodeVersionsMatch.ps1 -NpmPackageJsonPath ../package.json -NpmPackageLockJsonPath ../package-lock.json
+          ./.github/ci/scripts/Confirm-NpmVisualStudioCodeVersionsMatch.ps1 -NpmPackageJsonPath package.json -NpmPackageLockJsonPath package-lock.json
   validate:
     runs-on: windows-latest
     steps:
