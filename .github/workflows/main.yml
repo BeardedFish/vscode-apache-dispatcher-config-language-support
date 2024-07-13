@@ -11,6 +11,15 @@ on:
       - '*'
 
 jobs:
+  check-vscode-npm-versions-match:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Check npm Visual Studio Code Versions
+        shell: pwsh
+        run: |
+          ./.github/ci/scripts/Confirm-NpmVisualStudioCodeVersionsMatch.ps1 -NpmPackageJsonPath package.json -NpmPackageLockJsonPath package-lock.json
   validate:
     runs-on: windows-latest
     steps:
