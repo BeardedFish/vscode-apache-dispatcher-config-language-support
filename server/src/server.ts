@@ -12,6 +12,8 @@ import * as path from "path";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import {
 	ClientCapabilities,
+	CodeLens,
+	CodeLensParams,
 	CompletionItem,
 	Connection,
 	DefinitionLink,
@@ -50,6 +52,9 @@ CONNECTION.onInitialize(async function(initializeParams: InitializeParams): Prom
 
 	const result: InitializeResult = {
 		capabilities: {
+			codeLensProvider: {
+				resolveProvider: true
+			},
 			completionProvider: {
 				triggerCharacters: AUTOCOMPLETION_TRIGGER_CHARACTERS
 			},
@@ -83,6 +88,20 @@ CONNECTION.onInitialized(async function(): Promise<void> {
 	await documentParserTreeManager.initialize(DOCUMENT_MANAGER);
 
 	console.info("Language server initialized.");
+});
+
+CONNECTION.onCodeLens(async function(params: CodeLensParams): Promise<CodeLens[]> {
+	if (documentParserTreeManager === undefined) {
+		await waitForDocumentParserTreeManagerInitialization(documentParserTreeManager);
+	}
+
+	const document: TextDocument | undefined = DOCUMENT_MANAGER.get(params.textDocument.uri);
+
+	if (document === undefined) {
+		return [];
+	}
+
+	return documentParserTreeManager.getDocumentCodeLensDefinitions(document.uri);
 });
 
 CONNECTION.onCompletion(
