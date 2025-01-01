@@ -7,6 +7,7 @@ import { INCLUDE_FUNCTION_NAME } from "@language-server/constants/function";
 import { DocumentParserTreeManager } from "@language-server/core/document-parser-tree-manager";
 import { ApacheDispatcherConfigToken, getCurrentSyntaxNode } from "@language-server/core/tree-sitter";
 import { FileExistenceContext, getFileExistenceContext } from "@language-server/utils/file-system";
+import { removeOuterQuotes } from "@language-server/utils/string";
 import {
 	DefinitionLink,
 	DefinitionParams,
@@ -18,22 +19,6 @@ import Parser = require("web-tree-sitter");
 
 const START_POSITION: Position = Position.create(0, 0);
 const START_POSITION_RANGE: Range = Range.create(START_POSITION, START_POSITION);
-
-function isSingleQuoteString(text: string): boolean {
-	return text.startsWith("'") && text.endsWith("'");
-}
-
-function isDoubleQuoteString(text: string): boolean {
-	return text.startsWith("\"") && text.endsWith("\"");
-}
-
-function removeOuterQuotes(text: string): string {
-	if (isSingleQuoteString(text) || isDoubleQuoteString(text)) {
-		return text.substring(1, text.length - 1);
-	}
-
-	return text;
-}
 
 export async function getDefinition(
 	documentParserTreeManager: DocumentParserTreeManager,

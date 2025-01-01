@@ -3,12 +3,13 @@
  * @author          Darian Benam <darian@darianbenam.com>
  */
 
+import { getCodeLensDefinitions } from "@language-server/core/codelens-provider";
 import {
 	ApacheDispatcherConfigToken,
 	loadApacheDispatcherConfigTreeSitterLanguage,
 	tokenizeTextDocument
 } from "@language-server/core/tree-sitter";
-import { DocumentSymbol, SymbolKind, TextDocuments } from "vscode-languageserver";
+import { CodeLens, DocumentSymbol, SymbolKind, TextDocuments } from "vscode-languageserver";
 import { Range, TextDocument } from "vscode-languageserver-textdocument";
 import Parser = require("web-tree-sitter");
 
@@ -97,7 +98,6 @@ export class DocumentParserTreeManager {
 			selectionRange: selectionRange
 		};
 	}
-
 
 	private getApacheDispatcherConfigTokenSymbolKind(tokenType: ApacheDispatcherConfigToken): SymbolKind {
 		switch (tokenType) {
@@ -192,6 +192,10 @@ export class DocumentParserTreeManager {
 		}
 
 		return rootSymbols;
+	}
+
+	public getDocumentCodeLensDefinitions(documentUri: string): CodeLens[] {
+		return getCodeLensDefinitions(this.documentParseTree.get(documentUri))
 	}
 
 	public updateParseTree(document: TextDocument): void {
