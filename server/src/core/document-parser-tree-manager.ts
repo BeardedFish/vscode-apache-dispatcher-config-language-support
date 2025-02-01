@@ -12,7 +12,7 @@ import { DocumentSymbol, SymbolKind, TextDocuments } from "vscode-languageserver
 import { Range, TextDocument } from "vscode-languageserver-textdocument";
 import Parser = require("web-tree-sitter");
 
-type ApacheDispatcherConfigDocoumentSymbol = {
+type ApacheDispatcherConfigDocumentSymbol = {
 	node: Parser.SyntaxNode;
 	parentSymbols: DocumentSymbol[];
 }
@@ -122,7 +122,7 @@ export class DocumentParserTreeManager {
 		}
 
 		const rootSymbols: DocumentSymbol[] = [];
-		const documentSymbolsStack: ApacheDispatcherConfigDocoumentSymbol[] = [
+		const documentSymbolsStack: ApacheDispatcherConfigDocumentSymbol[] = [
 			{
 				node: syntaxTree.rootNode,
 				parentSymbols: rootSymbols
@@ -130,7 +130,7 @@ export class DocumentParserTreeManager {
 		];
 
 		while (documentSymbolsStack.length > 0) {
-			const documentSymbol: ApacheDispatcherConfigDocoumentSymbol | undefined = documentSymbolsStack.pop();
+			const documentSymbol: ApacheDispatcherConfigDocumentSymbol | undefined = documentSymbolsStack.pop();
 
 			if (documentSymbol === undefined || documentSymbol.node === undefined) {
 				continue;
