@@ -1,0 +1,8 @@
+/name "internet-server"
+
+/farms {
+	/farm1 {}
+	/farm1 {}
+	/farm2 {}
+	/farm2 {}
+}

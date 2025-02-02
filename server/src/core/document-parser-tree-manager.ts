@@ -8,6 +8,7 @@ import {
 	loadApacheDispatcherConfigTreeSitterLanguage,
 	tokenizeTextDocument
 } from "@language-server/core/tree-sitter";
+import { getSyntaxNodeRange } from "@language-server/utils/range";
 import { DocumentSymbol, SymbolKind, TextDocuments } from "vscode-languageserver";
 import { Range, TextDocument } from "vscode-languageserver-textdocument";
 import Parser = require("web-tree-sitter");
@@ -18,7 +19,7 @@ type ApacheDispatcherConfigDocumentSymbol = {
 }
 
 export async function waitForDocumentParserTreeManagerInitialization(
-	documentParserTreeManager: DocumentParserTreeManager
+	documentParserTreeManager: DocumentParserTreeManager | undefined
 ): Promise<void> {
 	return new Promise(function(resolve: (value: void) => void) {
 		setTimeout(function() {
@@ -68,27 +69,8 @@ export class DocumentParserTreeManager {
 		selectionSyntaxNode: Parser.SyntaxNode,
 		kind: SymbolKind
 	): DocumentSymbol {
-		const parentTokenRange: Range = {
-			start: {
-				line: parentSyntaxNode.startPosition.row,
-				character: parentSyntaxNode.startPosition.column
-			},
-			end: {
-				line: parentSyntaxNode.endPosition.row,
-				character: parentSyntaxNode.endPosition.column
-			}
-		};
-
-		const selectionRange: Range = {
-			start: {
-				line: selectionSyntaxNode.startPosition.row,
-				character: selectionSyntaxNode.startPosition.column
-			},
-			end: {
-				line: selectionSyntaxNode.endPosition.row,
-				character: selectionSyntaxNode.endPosition.column
-			}
-		};
+		const parentTokenRange: Range = getSyntaxNodeRange(parentSyntaxNode);
+		const selectionRange: Range = getSyntaxNodeRange(selectionSyntaxNode);
 
 		return {
 			name: selectionSyntaxNode.text,
@@ -97,7 +79,6 @@ export class DocumentParserTreeManager {
 			selectionRange: selectionRange
 		};
 	}
-
 
 	private getApacheDispatcherConfigTokenSymbolKind(tokenType: ApacheDispatcherConfigToken): SymbolKind {
 		switch (tokenType) {
@@ -194,14 +175,16 @@ export class DocumentParserTreeManager {
 		return rootSymbols;
 	}
 
-	public updateParseTree(document: TextDocument): void {
+	public updateParseTree(document: TextDocument): boolean {
 		if (this.treeSitterParser === undefined) {
-			throw new Error("Tree-sitter parser has not been initialized!");
+			return false;
 		}
 
-		const documentUri = document.uri;
+		const documentUri: string = document.uri;
 		const textDocumentParserTree: Parser.Tree = tokenizeTextDocument(this.treeSitterParser, document);
 
 		this.documentParseTree.set(documentUri, textDocumentParserTree);
+
+		return true;
 	}
 }

@@ -1,9 +1,9 @@
-import * as assert from "assert";
-import * as vscode from "vscode";
 import {
 	activateApacheDispatcherConfigExtension,
 	openDocumentByRelativeUri
 } from "../utils/extension";
+import * as assert from "assert";
+import * as vscode from "vscode";
 
 /**
  * @returns The position after the property that was typed in.
@@ -107,7 +107,7 @@ async function assertDoesNotContainAutocompletionItem(
 }
 
 suite("Apache Dispatcher Config Language Support for Visual Studio Code Autocompletion Test Suite", () => {
-	vscode.window.showInformationMessage("Running tests...");
+	vscode.window.showInformationMessage("Running Autocompletion Tests...");
 
 	setup(async () => {
 		await activateApacheDispatcherConfigExtension();
