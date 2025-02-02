@@ -1,4 +1,4 @@
-The `/url` proeprty is used to filter the request based on its URL.
+The `/url` property is used to filter the request based on its URL.
 
 ---
 
