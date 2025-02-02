@@ -83,7 +83,7 @@ export function getDocumentParseTreeDiagnostics(
 	syntaxNodeScopeMap.forEach(function(currentScopeSyntaxNodes: Parser.SyntaxNode[], rawScopeId: string) {
 		const scopeIdMd5Hash: string = convertValueToMd5Hash(rawScopeId);
 		const propertySyntaxNodeOccurrences: Map<string, Parser.SyntaxNode> = new Map();
-		const stringOccurrences: Map<string, Parser.SyntaxNode> = new Map();
+		const stringSyntaxNodeOccurrences: Map<string, Parser.SyntaxNode> = new Map();
 
 		for (const syntaxNode of currentScopeSyntaxNodes) {
 			const syntaxNodeTextValue: string = syntaxNode.text.trim();
@@ -126,17 +126,24 @@ export function getDocumentParseTreeDiagnostics(
 				}
 
 				const stringValueWithoutQuotes: string = removeOuterQuotes(syntaxNodeTextValue);
+				const stringSyntaxNode: Parser.SyntaxNode | undefined = stringSyntaxNodeOccurrences.get(stringValueWithoutQuotes);
 
-				if (stringOccurrences.has(stringValueWithoutQuotes)) {
+				if (stringSyntaxNode !== undefined) {
 					const isDuplicateDiagnostic: boolean = diagnostics.some(diagnostic => diagnostic.range.start === getSyntaxNodeRange(syntaxNode).start);
 
 					if (!isDuplicateDiagnostic) {
-						diagnostics.push(createDuplicateStringDiagnostic(syntaxNodeTextValue, getSyntaxNodeRange(stringOccurrences.get(stringValueWithoutQuotes)!), scopeIdMd5Hash));
+						diagnostics.push(
+							createDuplicateStringDiagnostic(
+								syntaxNodeTextValue,
+								getSyntaxNodeRange(stringSyntaxNode),
+								scopeIdMd5Hash
+							)
+						);
 					}
 
 					diagnostics.push(createDuplicateStringDiagnostic(syntaxNodeTextValue, currentSyntaxNodeRange, scopeIdMd5Hash));
 				} else {
-					stringOccurrences.set(stringValueWithoutQuotes, syntaxNode);
+					stringSyntaxNodeOccurrences.set(stringValueWithoutQuotes, syntaxNode);
 				}
 			}
 		}
