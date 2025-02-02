@@ -11,6 +11,7 @@ async function main(): Promise<void> {
 
 		// Download Visual Studio Code, unzip it, and run the integration tests
 		await runTests({
+			version: "1.86.0",
 			extensionDevelopmentPath,
 			extensionTestsPath
 		});
