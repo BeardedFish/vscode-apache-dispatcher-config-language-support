@@ -36,9 +36,9 @@ function createDuplicateStringDiagnostic(
 }
 
 function getSyntaxNodeScopeIdentifier(syntaxNode: Parser.SyntaxNode | null): string {
-	return syntaxNode
-		? `${syntaxNode.startPosition.row}`
-		: "root";
+	return syntaxNode === null
+		? "root"
+		: `${syntaxNode.startPosition.row}`;
 }
 
 function* buildSyntaxNodeScopeMapRecursively(
@@ -82,8 +82,8 @@ export function getDocumentParseTreeDiagnostics(
 
 	syntaxNodeScopeMap.forEach(function(currentScopeSyntaxNodes: Parser.SyntaxNode[], rawScopeId: string) {
 		const scopeIdMd5Hash: string = convertValueToMd5Hash(rawScopeId);
-		const propertySyntaxNodeOccurrences: Map<string, Parser.SyntaxNode> = new Map();
-		const stringSyntaxNodeOccurrences: Map<string, Parser.SyntaxNode> = new Map();
+		const propertySyntaxNodeOccurrences: Map<string, Parser.SyntaxNode[]> = new Map();
+		const stringSyntaxNodeOccurrences: Map<string, Parser.SyntaxNode[]> = new Map();
 
 		for (const syntaxNode of currentScopeSyntaxNodes) {
 			const syntaxNodeTextValue: string = syntaxNode.text.trim();
@@ -94,26 +94,17 @@ export function getDocumentParseTreeDiagnostics(
 			}
 
 			const currentSyntaxNodeRange: Range = getSyntaxNodeRange(syntaxNode);
+			let syntaxNodeOccurrences: Parser.SyntaxNode[];
 
 			if (syntaxNode.type === ApacheDispatcherConfigToken.PropertyName) {
-				const propertySyntaxNode: Parser.SyntaxNode | undefined = propertySyntaxNodeOccurrences.get(syntaxNodeTextValue)
+				syntaxNodeOccurrences = propertySyntaxNodeOccurrences.get(syntaxNodeTextValue) ?? [];
+				syntaxNodeOccurrences.push(syntaxNode);
 
-				if (propertySyntaxNode !== undefined) {
-					const isDuplicateDiagnostic: boolean = diagnostics.some(diagnostic => diagnostic.range.start === getSyntaxNodeRange(propertySyntaxNode).start);
+				propertySyntaxNodeOccurrences.set(syntaxNodeTextValue, syntaxNodeOccurrences);
 
-					if (!isDuplicateDiagnostic) {
-						diagnostics.push(
-							createDuplicatePropertyDiagnostic(
-								syntaxNodeTextValue,
-								getSyntaxNodeRange(propertySyntaxNode),
-								scopeIdMd5Hash
-							)
-						);
-					}
-
+				if (syntaxNodeOccurrences.length > 1) {
+					diagnostics.push(createDuplicatePropertyDiagnostic(syntaxNodeTextValue, getSyntaxNodeRange(syntaxNodeOccurrences[0]), scopeIdMd5Hash));
 					diagnostics.push(createDuplicatePropertyDiagnostic(syntaxNodeTextValue, currentSyntaxNodeRange, scopeIdMd5Hash));
-				} else {
-					propertySyntaxNodeOccurrences.set(syntaxNodeTextValue, syntaxNode);
 				}
 			} else if (syntaxNode.type === ApacheDispatcherConfigToken.String) {
 				const syntaxNodeParent: Parser.SyntaxNode | null = syntaxNode.parent;
@@ -126,24 +117,15 @@ export function getDocumentParseTreeDiagnostics(
 				}
 
 				const stringValueWithoutQuotes: string = removeOuterQuotes(syntaxNodeTextValue);
-				const stringSyntaxNode: Parser.SyntaxNode | undefined = stringSyntaxNodeOccurrences.get(stringValueWithoutQuotes);
 
-				if (stringSyntaxNode !== undefined) {
-					const isDuplicateDiagnostic: boolean = diagnostics.some(diagnostic => diagnostic.range.start === getSyntaxNodeRange(syntaxNode).start);
+				syntaxNodeOccurrences = stringSyntaxNodeOccurrences.get(stringValueWithoutQuotes) ?? [];
+				syntaxNodeOccurrences.push(syntaxNode);
 
-					if (!isDuplicateDiagnostic) {
-						diagnostics.push(
-							createDuplicateStringDiagnostic(
-								syntaxNodeTextValue,
-								getSyntaxNodeRange(stringSyntaxNode),
-								scopeIdMd5Hash
-							)
-						);
-					}
+				stringSyntaxNodeOccurrences.set(stringValueWithoutQuotes, syntaxNodeOccurrences);
 
+				if (syntaxNodeOccurrences.length > 1) {
+					diagnostics.push(createDuplicateStringDiagnostic(syntaxNodeTextValue, getSyntaxNodeRange(syntaxNodeOccurrences[0]), scopeIdMd5Hash));
 					diagnostics.push(createDuplicateStringDiagnostic(syntaxNodeTextValue, currentSyntaxNodeRange, scopeIdMd5Hash));
-				} else {
-					stringSyntaxNodeOccurrences.set(stringValueWithoutQuotes, syntaxNode);
 				}
 			}
 		}

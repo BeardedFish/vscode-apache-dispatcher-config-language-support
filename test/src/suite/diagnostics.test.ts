@@ -108,6 +108,41 @@ suite("Apache Dispatcher Config Language Support for Visual Studio Code Diagnost
 		}
 	});
 
+	test("Pair of Duplicate Properties/Strings Results in 6 Diagnostic Warnings With 2 Scope IDs", async () => {
+		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-properties-4.any");
+		const document: vscode.TextDocument = textEditor.document;
+
+		await sleep(DIAGNOSTIC_SLEEP_TIMEOUT_MS);
+
+		const diagnostics: vscode.Diagnostic[] = vscode.languages.getDiagnostics(document.uri);
+		const totalDiagnostics: number = diagnostics.length;
+
+		assert.strictEqual(totalDiagnostics === 6, true, `Expected exactly 6 diagnostic warnings, found ${totalDiagnostics}`);
+
+		const clientHeadersDiagnosticMessage: string = "The property '/clientheaders' is already defined in the current scope (Scope ID: c4ca4238a0b923820dcc509a6f75849b).";
+
+		assert.strictEqual(diagnostics[0].message, clientHeadersDiagnosticMessage);
+		assert.strictEqual(diagnostics[0].severity, vscode.DiagnosticSeverity.Warning);
+
+		const alreadyDefinedStringScopeOneDiagnosticMessage: string = "The string '*' is already defined in the current scope (Scope ID: c81e728d9d4c2f636f067f89cc14862c).";
+		const alreadyDefinedStringScopeTwoDiagnosticMessage: string = "The string '*' is already defined in the current scope (Scope ID: 1679091c5a880faf6fb5e6087eb1b2dc).";
+
+		assert.strictEqual(diagnostics[1].message, clientHeadersDiagnosticMessage);
+		assert.strictEqual(diagnostics[1].severity, vscode.DiagnosticSeverity.Warning);
+
+		assert.strictEqual(diagnostics[2].message, alreadyDefinedStringScopeOneDiagnosticMessage);
+		assert.strictEqual(diagnostics[2].severity, vscode.DiagnosticSeverity.Warning);
+
+		assert.strictEqual(diagnostics[3].message, alreadyDefinedStringScopeOneDiagnosticMessage);
+		assert.strictEqual(diagnostics[3].severity, vscode.DiagnosticSeverity.Warning);
+
+		assert.strictEqual(diagnostics[4].message, alreadyDefinedStringScopeTwoDiagnosticMessage);
+		assert.strictEqual(diagnostics[4].severity, vscode.DiagnosticSeverity.Warning);
+
+		assert.strictEqual(diagnostics[5].message, alreadyDefinedStringScopeTwoDiagnosticMessage);
+		assert.strictEqual(diagnostics[5].severity, vscode.DiagnosticSeverity.Warning);
+	});
+
 	test("2 Strings With Same Value Results in 2 Diagnostic Warnings", async () => {
 		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-strings-1.any");
 		const document: vscode.TextDocument = textEditor.document;

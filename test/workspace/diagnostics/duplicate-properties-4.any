@@ -1,0 +1,12 @@
+/farms {
+	/publish {
+		/clientheaders {
+			"*"
+			"*"
+		}
+		/clientheaders {
+			"*"
+			"*"
+		}
+	}
+}
