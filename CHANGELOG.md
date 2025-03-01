@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.4.0 - 2025-03-01
+
+- Added diagnostic support to detect duplicate properties and strings
+- Fixed typo in the documentation
+
 ## v1.3.2 - 2024-07-13
 
 - Added `Buy Me a Coffee` link to the README.md file
