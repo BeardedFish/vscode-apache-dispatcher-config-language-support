@@ -5,6 +5,7 @@
 
 import { AUTOCOMPLETION_TRIGGER_CHARACTERS, handleAutoCompletion } from "@language-server/core/autocompletion";
 import { getDefinition } from "@language-server/core/definition-provider";
+import { getDocumentParseTreeDiagnostics } from "@language-server/core/diagnostics";
 import { DocumentParserTreeManager, waitForDocumentParserTreeManagerInitialization } from "@language-server/core/document-parser-tree-manager";
 import { DocumentationManager } from "@language-server/core/documentation-manager";
 import { handleHover } from "@language-server/core/hover-provider";
@@ -16,6 +17,7 @@ import {
 	Connection,
 	DefinitionLink,
 	DefinitionParams,
+	Diagnostic,
 	DidChangeConfigurationNotification,
 	DocumentSymbol,
 	DocumentSymbolParams,
@@ -29,14 +31,39 @@ import {
 	TextDocuments,
 	createConnection
 } from "vscode-languageserver/node";
+import Parser = require("web-tree-sitter");
 
 const CONNECTION: Connection = createConnection(ProposedFeatures.all);
 const DOCUMENT_MANAGER: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
 let hasConfigurationCapability: boolean = false;
 
-let documentParserTreeManager: DocumentParserTreeManager;
+let documentParserTreeManager: DocumentParserTreeManager | undefined;
 let documentationManager: DocumentationManager;
+
+function updateDocumentParseTreeAndSendDiagnostics(
+	document: TextDocument,
+	sendDiagnostics: boolean = true
+): void {
+	if (documentParserTreeManager === undefined) {
+		return;
+	}
+
+	const parseTreeUpdated: boolean = documentParserTreeManager.updateParseTree(document);
+
+	if (parseTreeUpdated && sendDiagnostics) {
+		const documentUri: string = document.uri;
+		const documentTokenTree: Parser.Tree | undefined = documentParserTreeManager.getDocumentTokenTree(documentUri);
+		const currentDocumentDiagnostics: Diagnostic[] | undefined = getDocumentParseTreeDiagnostics(documentTokenTree);
+
+		if (currentDocumentDiagnostics !== undefined) {
+			CONNECTION.sendDiagnostics({
+				uri: documentUri,
+				diagnostics: currentDocumentDiagnostics
+			});
+		}
+	}
+}
 
 CONNECTION.onInitialize(async function(initializeParams: InitializeParams): Promise<InitializeResult> {
 	console.info("Initializing language server...");
@@ -89,7 +116,7 @@ CONNECTION.onCompletion(
 	async (textDocumentPositionParams: TextDocumentPositionParams): Promise<CompletionItem[]> => {
 		return await handleAutoCompletion(
 			DOCUMENT_MANAGER,
-			documentParserTreeManager,
+			documentParserTreeManager!,
 			documentationManager,
 			textDocumentPositionParams
 		);
@@ -115,7 +142,7 @@ CONNECTION.onDocumentSymbol(async function(documentSymbolParams: DocumentSymbolP
 	const document: TextDocument | undefined = DOCUMENT_MANAGER.get(documentSymbolParams.textDocument.uri);
 
 	if (document !== undefined) {
-		return documentParserTreeManager.getDocumentSymbols(document.uri);
+		return documentParserTreeManager!.getDocumentSymbols(document.uri);
 	}
 
 	return [];
@@ -125,19 +152,19 @@ CONNECTION.onHover(
 	async (textDocumentPositionParams: TextDocumentPositionParams): Promise<Hover | null> => {
 		return await handleHover(
 			DOCUMENT_MANAGER,
-			documentParserTreeManager,
+			documentParserTreeManager!,
 			documentationManager,
 			textDocumentPositionParams
 		);
 	}
 );
 
-DOCUMENT_MANAGER.onDidOpen(function(event: TextDocumentChangeEvent<TextDocument>) {
-	documentParserTreeManager?.updateParseTree(event.document);
+DOCUMENT_MANAGER.onDidOpen(function(event: TextDocumentChangeEvent<TextDocument>): void {
+	updateDocumentParseTreeAndSendDiagnostics(event.document, false);
 });
 
-DOCUMENT_MANAGER.onDidChangeContent(async function(event: TextDocumentChangeEvent<TextDocument>): Promise<void> {
-	documentParserTreeManager?.updateParseTree(event.document);
+DOCUMENT_MANAGER.onDidChangeContent(function(event: TextDocumentChangeEvent<TextDocument>): void {
+	updateDocumentParseTreeAndSendDiagnostics(event.document);
 });
 
 DOCUMENT_MANAGER.listen(CONNECTION);
