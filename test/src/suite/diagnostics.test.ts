@@ -227,4 +227,16 @@ suite("Apache Dispatcher Config Language Support for Visual Studio Code Diagnost
 			assert.strictEqual(diagnostics[i].severity, vscode.DiagnosticSeverity.Warning);
 		}
 	});
+
+	test("'dispatcher.any' File With 0 Duplicate Properties/Strings Has 0 Diagnostic Warnings", async () => {
+		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("generic/dispatcher.any");
+		const document: vscode.TextDocument = textEditor.document;
+
+		await sleep(DIAGNOSTIC_SLEEP_TIMEOUT_MS);
+
+		const diagnostics: vscode.Diagnostic[] = vscode.languages.getDiagnostics(document.uri);
+		const totalDiagnostics: number = diagnostics.length;
+
+		assert.strictEqual(totalDiagnostics === 0, true, `Expected exactly 0 diagnostic warnings, found ${totalDiagnostics}`);
+	});
 });

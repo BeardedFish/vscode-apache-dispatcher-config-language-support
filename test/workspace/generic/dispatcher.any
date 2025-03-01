@@ -1,0 +1,112 @@
+# This file was borrowed from https://github.com/adobe/aem-dispatcher-experiments/blob/main/dispatcher-config-basic/private/etc/apache2/conf/dispatcher.any and modified
+
+/farms {
+	/publish {
+		/clientheaders {
+			"*"
+		}
+
+		/virtualhosts {
+			"aem-publish.local"
+		}
+
+		/renders {
+			/rend01 {
+				/hostname "127.0.0.1"
+				/port "4503"
+			}
+		}
+
+		/filter {
+			/0000 { /url "/*" /type "allow" }
+			/0001 { /type "deny" /url '/(system|crx|admin)(/.*)?' }
+			/0002 { /type "allow" /url "/system/sling/logout*" }
+		}
+
+		/cache {
+			/docroot "/Library/WebServer/docroot/publish"
+
+			/statfileslevel "0"
+
+			/allowAuthorized "0"
+
+			/rules {
+				/0000 {
+					/glob "*"
+					/type "deny"
+				}
+
+				/0005 {
+					/glob "/content/*"
+					/type "allow"
+				}
+
+				/0006 {
+					/glob "/etc.clientlibs/*"
+					/type "allow"
+				}
+
+				/0007 {
+					/glob "/favicon.ico"
+					/type "allow"
+				}
+
+				/0008 {
+					/glob "/conf/*"
+					/type "allow"
+				}
+			}
+
+			/invalidate {
+				/0000 {
+					/glob "*"
+					/type "deny"
+				}
+
+				/0001 {
+					/glob "*.html"
+					/type "allow"
+				}
+
+				/0002 {
+					/glob "/etc/segmentation.segment.js"
+					/type "allow"
+				}
+
+				/0003 {
+					/glob "*/analytics.sitecatalyst.js"
+					/type "allow"
+				}
+			}
+
+			/allowedClients {
+				/0000 {
+					/glob "*"
+					/type "deny"
+				}
+
+				/0001 {
+					/glob "127.0.0.1"
+					/type "allow"
+				}
+			}
+
+			/ignoreUrlParams {
+				/0001 { /glob "*" /type "deny" }
+				/0002 { /glob "utm_campaign" /type "allow" }
+			}
+		}
+
+		/statistics {
+			/categories {
+				/html {
+					/glob "*.html"
+				}
+
+				/others {
+					/glob "*"
+				}
+			}
+		}
+	}
+}
