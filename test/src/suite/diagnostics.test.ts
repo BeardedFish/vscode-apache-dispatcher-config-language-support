@@ -205,8 +205,25 @@ suite("Apache Dispatcher Config Language Support for Visual Studio Code Diagnost
 
 		assert.strictEqual(totalDiagnostics === 2, true, `Expected exactly 2 diagnostic warnings, found ${totalDiagnostics}`);
 
-		for (let i = 0; i < 2; i++) {
+		for (let i = 0; i < totalDiagnostics; i++) {
 			assert.strictEqual(diagnostics[i].message, "The string '${PUBLISH_DEFAULT_HOSTNAME}' is already defined in the current scope (Scope ID: 9c70933aff6b2a6d08c687a6cbb6b765).");
+			assert.strictEqual(diagnostics[i].severity, vscode.DiagnosticSeverity.Warning);
+		}
+	});
+
+	test("25 Strings With Same Value Results in 25 Diagnostic Warnings", async () => {
+		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-strings-3.any");
+		const document: vscode.TextDocument = textEditor.document;
+
+		await sleep(DIAGNOSTIC_SLEEP_TIMEOUT_MS);
+
+		const diagnostics: vscode.Diagnostic[] = vscode.languages.getDiagnostics(document.uri);
+		const totalDiagnostics: number = diagnostics.length;
+
+		assert.strictEqual(totalDiagnostics === 25, true, `Expected exactly 25 diagnostic warnings, found ${totalDiagnostics}`);
+
+		for (let i = 0; i < totalDiagnostics; i++) {
+			assert.strictEqual(diagnostics[i].message, "The string 'authorization' is already defined in the current scope (Scope ID: 9c70933aff6b2a6d08c687a6cbb6b765).");
 			assert.strictEqual(diagnostics[i].severity, vscode.DiagnosticSeverity.Warning);
 		}
 	});
