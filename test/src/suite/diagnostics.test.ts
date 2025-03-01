@@ -108,6 +108,40 @@ suite("Apache Dispatcher Config Language Support for Visual Studio Code Diagnost
 		}
 	});
 
+	test("6 Duplicate Properties Results in 6 Diagnostic Warnings", async () => {
+		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-properties-4.any");
+		const document: vscode.TextDocument = textEditor.document;
+
+		await sleep(DIAGNOSTIC_SLEEP_TIMEOUT_MS);
+
+		const diagnostics: vscode.Diagnostic[] = vscode.languages.getDiagnostics(document.uri);
+		const totalDiagnostics: number = diagnostics.length;
+
+		assert.strictEqual(totalDiagnostics === 6, true, `Expected exactly 6 diagnostic warnings, found ${totalDiagnostics}`);
+
+		for (let i = 0; i < totalDiagnostics; i++) {
+			assert.strictEqual(diagnostics[i].message, "The property '/type' is already defined in the current scope (Scope ID: cfcd208495d565ef66e7dff9f98764da).");
+			assert.strictEqual(diagnostics[i].severity, vscode.DiagnosticSeverity.Warning);
+		}
+	});
+
+	test("25 Duplicate Properties Results in 25 Diagnostic Warnings", async () => {
+		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-properties-5.any");
+		const document: vscode.TextDocument = textEditor.document;
+
+		await sleep(DIAGNOSTIC_SLEEP_TIMEOUT_MS);
+
+		const diagnostics: vscode.Diagnostic[] = vscode.languages.getDiagnostics(document.uri);
+		const totalDiagnostics: number = diagnostics.length;
+
+		assert.strictEqual(totalDiagnostics === 25, true, `Expected exactly 25 diagnostic warnings, found ${totalDiagnostics}`);
+
+		for (let i = 0; i < totalDiagnostics; i++) {
+			assert.strictEqual(diagnostics[i].message, "The property '/type' is already defined in the current scope (Scope ID: cfcd208495d565ef66e7dff9f98764da).");
+			assert.strictEqual(diagnostics[i].severity, vscode.DiagnosticSeverity.Warning);
+		}
+	});
+
 	test("Pair of Duplicate Properties/Strings Results in 6 Diagnostic Warnings With 2 Scope IDs", async () => {
 		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-property-string-pairs-1.any");
 		const document: vscode.TextDocument = textEditor.document;

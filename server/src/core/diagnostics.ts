@@ -102,8 +102,11 @@ export function getDocumentParseTreeDiagnostics(
 
 				propertySyntaxNodeOccurrences.set(syntaxNodeTextValue, syntaxNodeOccurrences);
 
-				if (syntaxNodeOccurrences.length > 1) {
+				if (syntaxNodeOccurrences.length === 2) {
 					diagnostics.push(createDuplicatePropertyDiagnostic(syntaxNodeTextValue, getSyntaxNodeRange(syntaxNodeOccurrences[0]), scopeIdMd5Hash));
+				}
+
+				if (syntaxNodeOccurrences.length > 1) {
 					diagnostics.push(createDuplicatePropertyDiagnostic(syntaxNodeTextValue, currentSyntaxNodeRange, scopeIdMd5Hash));
 				}
 			} else if (syntaxNode.type === ApacheDispatcherConfigToken.String) {
@@ -123,8 +126,11 @@ export function getDocumentParseTreeDiagnostics(
 
 				stringSyntaxNodeOccurrences.set(stringValueWithoutQuotes, syntaxNodeOccurrences);
 
-				if (syntaxNodeOccurrences.length > 1) {
+				if (syntaxNodeOccurrences.length === 2) {
 					diagnostics.push(createDuplicateStringDiagnostic(syntaxNodeTextValue, getSyntaxNodeRange(syntaxNodeOccurrences[0]), scopeIdMd5Hash));
+				}
+
+				if (syntaxNodeOccurrences.length > 1) {
 					diagnostics.push(createDuplicateStringDiagnostic(syntaxNodeTextValue, currentSyntaxNodeRange, scopeIdMd5Hash));
 				}
 			}
