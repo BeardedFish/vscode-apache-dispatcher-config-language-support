@@ -109,7 +109,7 @@ suite("Apache Dispatcher Config Language Support for Visual Studio Code Diagnost
 	});
 
 	test("Pair of Duplicate Properties/Strings Results in 6 Diagnostic Warnings With 2 Scope IDs", async () => {
-		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-properties-4.any");
+		const textEditor: vscode.TextEditor = await openDocumentByRelativeUri("diagnostics/duplicate-property-string-pairs-1.any");
 		const document: vscode.TextDocument = textEditor.document;
 
 		await sleep(DIAGNOSTIC_SLEEP_TIMEOUT_MS);
