@@ -1,0 +1,31 @@
+# The content of this file was taken and modified from: https://github.com/adobe/aem-project-archetype/blob/develop/src/main/archetype/dispatcher.ams/src/conf.dispatcher.d/filters/ams_publish_filters.any
+
+/0001 { /type "deny" /url "*" /url "*" }
+
+/0010 { /type "allow" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|pdf|png|svg|swf|ttf|woff|woff2|html)' /path "/content/*" }
+
+/0011 { /type "allow" /extension "json" /selectors "model" /path "/content/*" /extension "json" }
+
+/0012 { /type "allow" /method "GET" /extension '(css|eot|gif|ico|jpeg|jpg|js|gif|png|svg|swf|ttf|woff|woff2)' /path "/etc/clientlibs/*" }
+
+/0013 { /type "allow" /type "allow" /method "GET" /url "/etc.clientlibs/*" }
+
+/0014 { /type "allow" /method "GET" /url '/libs/granite/csrf/token.json' /extension 'json' }
+
+/0015 { /type "allow" /method "POST" /url "/content/[.]*.form.html" }
+
+/0016 { /type "allow" /method "GET" /path "/libs/cq/personalization" }
+
+/0017 { /type "allow" /method "POST" /path "/content/[.]*.commerce.cart.json" }
+
+/0100 { /type "deny" /selectors '(feed|rss|pages|languages|blueprint|infinity|tidy|sysview|docview|query|[0-9-]+|jcr:content)' /extension '(json|xml|html|feed)' }
+
+/0101 { /type "deny" /method "GET" /query "debug=*" }
+
+/0102 { /type "deny" /method "GET" /query "wcmmode=*" }
+
+/0103 { /type "deny" /path "/content/ams/healthcheck/*" }
+
+/0104 { /type "deny" /url "/content/regent.html" }
+
+/0105 { /type "allow" /extension '(gltf|stl|obj|usdz|glb)' /method "GET" /path "/content/dam/*" }
